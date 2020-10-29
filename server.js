@@ -1,10 +1,13 @@
 //___________________
 //Dependencies
 //___________________
+require('dotenv').config();
 const express = require('express');
+const app = express();
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
-const app = express();
+const session = require('express-session');
+const expressLayouts = require('express-ejs-layouts');
 const db = mongoose.connection;
 //___________________
 //Port
@@ -29,6 +32,15 @@ db.on('open', () => {});
 //Middleware
 //___________________
 //use public folder for static assets
+app.use(
+    session({
+        secret: process.env.SECRET, //a random string do not copy this value or your stuff will get hacked
+        resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
+        saveUninitialized: false, // default  more info: https://www.npmjs.com/package/express-session#resave
+    })
+);
+app.set('view engine', 'ejs');
+app.use(expressLayouts);
 app.use(express.static('public'));
 // populates req.body with parsed info from forms - if no data from forms will return an empty object {}
 app.use(express.urlencoded({ extended: false })); // extended: false - does not allow nested objects in query strings
@@ -39,9 +51,46 @@ app.use(methodOverride('_method')); // allow POST, PUT and DELETE from a form
 // Routes
 //___________________
 //localhost:3000
+// Controllers
+const posterController = require('./controllers/posterController.js');
+app.use('/posters', posterController);
+const userController = require('./controllers/userController.js');
+app.use('/users', userController);
+const sessionController = require('./controllers/sessionController.js');
+app.use('/sessions', sessionController);
+const tipController = require('./controllers/tipController.js');
+app.use('/tips', tipController);
+
+
+// Routes
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.redirect('/posters');
 });
+
+app.get('/any', (req, res) => {
+    //any route will work
+    req.session.anyProperty = 'any value';
+    console.log(req.session);
+    res.send('session was added');
+});
+
+app.get('/retrieve', (req, res) => {
+    //any route will work
+    console.log(req.session);
+    if (req.session.anyProperty === 'something you want it to') {
+        //test to see if that value exists
+        //do something if it's a match
+        console.log('it matches! cool');
+    } else {
+        //do something else if it's not
+        console.log('nope, not a match');
+    }
+    res.redirect('/');
+});
+
+// app.get('/', (req, res) => {
+//     res.send('Hello World!');
+// });
 //___________________
 //Listener
 //___________________

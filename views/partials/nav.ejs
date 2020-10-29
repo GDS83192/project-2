@@ -1,0 +1,21 @@
+<a href="/posters" class="brand-logo left">Posters</a>
+<ul class="right">
+    <li><a href="/posters/new">Create a new Fruit</a></li>
+    <li><a href="/tips/new">Create a new Actor</a></li>
+    <li><a href="/tips">All Actors</a></li>
+
+    <li><a href="/posters">All Movies</a></li>
+    <% if (currentUser) { %>
+        <li>Welcome
+            <%= currentUser.username %>
+        </li>
+        <li>
+            <form action="/sessions?_method=DELETE" method="POST">
+                <input type="submit" value="Log Out" class="btn-small red" />
+            </form>
+        </li>
+        <% } else { %>
+            <li><a href="/posters/new">Sign Up</a></li>
+            <li><a href="/sessions/new">Log In</a></li>
+            <% } %>
+</ul>

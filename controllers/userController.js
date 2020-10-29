@@ -1,53 +1,22 @@
-const router = require('express').Router();
-const User = require('../models/user');
-const Tip = require('../models/tip');
+const express = require('express');
+const router = express.Router();
+const bcrypt = require('bcrypt');
+const User = require('../models/user.js');
 
-router.get('/', async(req, res) => {
-    let allUsers = await User.find();
-    res.render('users/index.ejs', { users: allUsers });
+router.get('/new', (req, res) => {
+    res.render('users/new.ejs', { currentUser: req.session.currentUser });
 });
 
-router.get('/new', async(req, res) => {
-    let allTips = await Tip.find({});
-    res.render('users/new.ejs', { tip: allTips });
-});
-
-router.get('/:id', async(req, res) => {
-    let allTips = await Tip.find({});
-    let foundUser = await User.findById(req.params.id).populate({
-        path: 'tips',
-        options: { sort: {
-                ['name']: 1 } },
-    });
-
-    let tipsForChecklist = allTips.filter((tip) => {
-        if (!foundUser.tips.map((user) => user.id).includes(tip.id)) {
-            return tip;
-        }
-    });
-
-    res.render('users/show.ejs', {
-        user: foundUser,
-        tips: tipsForChecklist,
-    });
-});
-
-router.post('/', async(req, res) => {
-    console.log(req.body);
-    let user = await User.create(req.body);
-    res.redirect(`/users/${user.id}`);
-});
-
-router.put('/:userId/tips', async(req, res) => {
-    let foundUser = await User.findByIdAndUpdate(
-        req.params.userId, {
-            $push: {
-                tips: req.body.tips,
-            },
-        }, { new: true, upsert: true }
+router.post('/', (req, res) => {
+    //overwrite the user password with the hashed password, then pass that in to our database
+    req.body.password = bcrypt.hashSync(
+        req.body.password,
+        bcrypt.genSaltSync(10)
     );
-    console.log(foundUser);
-    res.redirect(`/users/${foundUser.id}`);
+    User.create(req.body, (err, createdUser) => {
+        console.log('user is created', createdUser);
+        res.redirect('/');
+    });
 });
 
 module.exports = router;
