@@ -1,10 +1,10 @@
 <h1>All Users</h1>
 
 <ul>
-    <% users.forEach(user=> { %>
+    <% posters.forEach(poster=> { %>
         <li>
-            <a href="/users/<%= user.id %>">
-                <%= user.name %>
+            <a href="/posters/<%= poster.id %>">
+                <%= poster.name %>
             </a>
         </li>
         <% }) %>

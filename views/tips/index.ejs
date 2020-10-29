@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <%- include ('../partials/head.ejs') %>
+</head>
+
+<body>
+    <nav>
+        <%- include ('../partials/nav.ejs') %>
+    </nav>
+    <div class="container">
+
+        <h1>Tip Index Page</h1>
+        <ul>
+            <% for (let tip of tips ) { %>
+                <li>
+                    <a href="/posters/<%=tip.id%>">
+                        <%= tip.name %>
+                </li>
+                <% } %>
+        </ul>
+    </div>
+</body>
+
+</html>

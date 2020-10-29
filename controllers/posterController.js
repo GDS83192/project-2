@@ -5,7 +5,7 @@ const Tip = require('../models/tip.js');
 
 router.get('/', async(req, res) => {
     let posters = await Poster.find({});
-    res.render('users/index', { users, currentUser: req.session.currentUser });
+    res.render('posters/index', { posters, currentUser: req.session.currentUser });
 });
 
 router.get('/new', async(req, res) => {
