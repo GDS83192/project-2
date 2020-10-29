@@ -36,6 +36,33 @@ ______________________________
 
 11) As a registered user I want to be able to delete my posts so that if I determine I want to take down an idea, this will be a straightforward process.
 
+                                   COVID SELF CARE APP MODELS AND ASSOCIATIONS
+
+
+1) User Model
+       A) Name: String
+       B) Picture: String
+       C) Tips: Array
+
+2) Tip Model
+       A) Name: String
+       B) Description: String
+
+Associations: 
+       * A user has many tips.
+       * A tip has one user.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
