@@ -14,6 +14,7 @@ const posterSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Tip',
     }, ],
+
 });
 
 module.exports = mongoose.model('Poster', posterSchema);

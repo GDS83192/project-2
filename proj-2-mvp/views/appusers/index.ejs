@@ -1,0 +1,16 @@
+<h1>Care Tipper Index Page</h1>
+<ul>
+    <% for (let i = 0; i < appUsers.length; i++) { %>
+        <li>
+            <a href="/appusers/<%=appUsers[i]._id%>">
+                <%= appUsers[i].name %>
+            </a>
+        </li>
+
+        <a href="/appusers/<%= appUsers[i]._id %>/edit">edit</a>
+        <form action="/appusers/<%= appUsers[i]._id %>?_method=DELETE" method="POST">
+            <button>Delete</button>
+        </form>
+
+        <% } %>
+</ul>

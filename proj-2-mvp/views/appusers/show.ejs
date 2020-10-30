@@ -1,0 +1,20 @@
+<h1>
+    <%= appUser.name %>'s Detail Page</h1>
+<h4>Create a New Tip</h4>
+<form action="/appusers/<%= appUser.id %>/tips" method="POST">
+    <div class="form-group">
+        <label for="tipText">Tip Description</label>
+        <input type="text" class="form-control" id="tipText" name="tipText" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<h1>Tips</h1>
+
+<ul>
+    <% appUser.tips.forEach(tip => { %>
+        <li>
+            <%= tip.tipText %>
+        </li>
+        <% }) %>
+</ul>
