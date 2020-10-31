@@ -1,0 +1,11 @@
+<h1>All the Cares</h1>
+
+<ul>
+    <% cares.forEach(care => { %>
+        <li>
+            <a href="/cares/<%= care.id %>">
+                <%= care.name %>
+            </a>
+        </li>
+        <% }) %>
+</ul>

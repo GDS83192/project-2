@@ -1,0 +1,5 @@
+https://pitched-app.herokuapp.com/reviews -- Similar to what I want to do with adding things outside of checklist
+
+https://pin-recipe.herokuapp.com/recipes/5f9da0fc7269aa00170a9629 -- Very similar to what I want to do but looks to be all vanillaJS
+
+https://desolate-journey-34527.herokuapp.com/register -- Closest to what I want to do -- Github linked here https://github.com/Funkateer/campGround

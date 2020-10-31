@@ -1,0 +1,37 @@
+<h1>
+    <%= care.name %> Detail Page</h1>
+<a href="/cares/<%= care._id %>/edit/">edit</a>
+
+<form action="/cares/<%= care.id %>?_method=DELETE" method="POST">
+    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+</form>
+
+
+<form action="/cares/<%= care.id %>?_method=PUT" method="POST">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" value="<%= care.name %> " /> <br />
+
+    <input type="submit" value="Edit Album" />
+</form>
+
+<h4>Add Tips</h4>
+<form action="/cares/<%= care.id %>/tips?_method=PUT" method="POST">
+    <% tips.forEach(tip => { %>
+
+        <input type="checkbox" name="tips" value="<%= tip.id %>" />
+        <label for="<%= tip.name %>"><%= tip.name%>: <%= tip.description %></label><br />
+        <% })%>
+            <input type="submit" value="Add Tips" />
+</form>
+
+
+<h4>Tips</h4>
+<ul>
+    <% care.tips.forEach(tip => { %>
+        <li>
+            <%= tip.name %>:
+                <%= tip.description %>
+
+                    <% }) %>
+        </li>
+</ul>
