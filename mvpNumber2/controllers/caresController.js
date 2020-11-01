@@ -6,14 +6,32 @@ const Tip = require('../models/tip');
 
 //1. INDEX ROUTE
 router.get('/', async(req, res) => {
-        let allCares = await Care.find()
-        res.render('cares/index.ejs', { cares: allCares })
-    })
-    //2. NEW ROUTE
+    let allCares = await Care.find()
+    res.render('cares/index.ejs', { cares: allCares })
+})
+
+//2. NEW ROUTE
 router.get('/new', async(req, res) => {
     let allTips = await Tip.find({});
     res.render('cares/new.ejs', { tips: allTips });
 });
+
+
+
+// 5. UPDATE ROUTE to Add New Tips to a User after Creation
+router.put('/:careId/tips', async(req, res) => {
+    let foundCare = await Care.findByIdAndUpdate(
+        req.params.careId, {
+            $push: {
+                tips: req.body.tips,
+
+            },
+        }, { new: true, upsert: true }
+    );
+    console.log(foundCare);
+    res.redirect(`/cares/${foundCare.id}`);
+});
+
 
 //3. SHOW ROUTE
 router.get('/:id', async(req, res) => {
@@ -40,40 +58,29 @@ router.post('/', async(req, res) => {
     res.redirect(`/cares/${care.id}`);
 });
 
-// // EDIT
-// router.get('/:id/edit', (req, res) => {
-//     Care.findById(req.params.id, (error, foundCare) => {
-//         res.render('cares/edit.ejs', { care: foundCare });
-//     });
-// });
 
-router.put('/:careId/', async(req, res) => {
+
+
+
+
+
+
+
+
+//Update Route for User (vs Tips)
+
+// 5. UPDATE ROUTE
+router.put('/:id', async(req, res) => {
     let foundCare = await Care.findByIdAndUpdate(
-        req.params.careId, {
-            $push: {
+        req.params.id, {
+            $set: {
                 name: req.body.name,
             },
         }, { new: true, upsert: true }
     );
     console.log(foundCare);
-    res.redirect(`/cares/${foundCare.id}`);
+    res.redirect(`/cares/`);
 });
-
-// 5. UPDATE ROUTE
-router.put('/:careId/tips', async(req, res) => {
-    let foundCare = await Care.findByIdAndUpdate(
-        req.params.careId, {
-            $push: {
-                tips: req.body.tips,
-            },
-        }, { new: true, upsert: true }
-    );
-    console.log(foundCare);
-    res.redirect(`/cares/${foundCare.id}`);
-});
-
-
-
 
 // 6. DELETE ROUTE
 router.delete('/:id', (req, res) => {
@@ -82,4 +89,29 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+// // EDIT
+// router.get('/:id/edit', (req, res) => {
+//     Care.findById(req.params.id, (error, care) => {
+//         res.render('./cares/edit.ejs', { care });
+//     });
+// });
+
+
+router.get('/:id/edit', (req, res) => {
+    Care.findById(req.params.id, (error, care) => {
+        res.render('./cares/edit.ejs', { care });
+    });
+});
+
+// router.put("/:id", function(req, res) {
+//     Care.findByIdAndUpdate(req.params.id,
+//         req.params.name,
+//         function(err, updatedCare) {
+//             if (err) {
+//                 console.log("ERROR!");
+//             } else {
+//                 res.redirect("/cares/" + req.params.id);
+//             }
+//         });
+// });
 module.exports = router;
