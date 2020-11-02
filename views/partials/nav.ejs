@@ -1,21 +1,23 @@
-<a href="/posters" class="brand-logo left">Posters</a>
-<ul class="right">
-    <li><a href="/posters/new">Create a new Poster</a></li>
-    <li><a href="/tips/new">Create a new Tip</a></li>
-    <li><a href="/tips">All Tips</a></li>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Covid 19 Self Care Tips</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <li><a href="/posters">All Posters</a></li>
-    <% if (currentUser) { %>
-        <li>Welcome
-            <%= currentUser.username %>
-        </li>
-        <li>
-            <form action="/sessions?_method=DELETE" method="POST">
-                <input type="submit" value="Log Out" class="btn-small red" />
-            </form>
-        </li>
-        <% } else { %>
-            <li><a href="/users/new">Sign Up</a></li>
-            <li><a href="/sessions/new">Log In</a></li>
-            <% } %>
-</ul>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+
+            <li class="nav-item active">
+                <a class="nav-link" href="/cares">All Users</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/cares/new">New User</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/tips/new">New Tip</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>

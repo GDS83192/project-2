@@ -1,0 +1,15 @@
+<h1>Create a New Care</h1>
+
+<form action="/cares" method="POST">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" />
+    </div>
+
+    <% tips.forEach(tip => { %>
+
+        <input type="checkbox" id="<%= tip.name %>" name="tips" value="<%= tip.id %>" />
+        <label for="<%= tip.name %>"><%= tip.name %></label><br />
+        <% })%>
+            <button type="submit" class="btn btn-primary">Submit</button>
+</form>

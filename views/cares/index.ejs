@@ -1,0 +1,13 @@
+<h1>All Users</h1>
+
+<ul>
+    <% cares.forEach(care => { %>
+        <li>
+            <a href="/cares/<%= care.id %>">
+                <%= care.name %>
+
+                    <a href="/cares/<%= care._id %>/edit">edit</a>
+            </a>
+        </li>
+        <% }) %>
+</ul>

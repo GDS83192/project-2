@@ -1,0 +1,46 @@
+<h1>
+    <%= care.name %>'s Self Care Tips Page</h1>
+<a href="/cares/<%= care._id %>/edit">edit</a>
+<br>
+<br>
+<form action="/cares/<%= care.id %>?_method=DELETE" method="POST">
+    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+</form>
+
+
+<br>
+<br>
+<h4>Add Tips</h4>
+<br>
+<br>
+
+<form action="/cares/<%= care.id %>/tips?_method=PUT" method="POST">
+    <% tips.forEach(tip => { %>
+
+        <input type="checkbox" name="tips" value="<%= tip.id %>" />
+        <label for="<%= tip.name %>"><%= tip.name%>: <%= tip.description %></label><br />
+        <% })%>
+            <input type="submit" value="Add Tips" />
+</form>
+<br>
+<br>
+
+<h4>Tips</h4>
+<ul>
+    <% care.tips.forEach(tip => { %>
+        <li>
+            <%= tip.name %>:
+                <%= tip.description %>
+
+                    <% }) %>
+        </li>
+</ul>
+
+<form action="/cares/<%= care.id %>/tips/remove?_method=PUT" method="POST">
+    <% tips.forEach(tip => { %>
+
+        <input type="checkbox" name="tips" value="<%= tip.id %>" />
+        <label for="<%= tip.name %>"><%= tip.name%>: <%= tip.description %></label><br />
+        <% })%>
+            <input type="submit" value="Remove Tips" />
+</form>
