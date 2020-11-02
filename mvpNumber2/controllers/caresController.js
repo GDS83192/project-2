@@ -89,18 +89,27 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-// // EDIT
-// router.get('/:id/edit', (req, res) => {
-//     Care.findById(req.params.id, (error, care) => {
-//         res.render('./cares/edit.ejs', { care });
-//     });
-// });
 
 
+// EDIT
 router.get('/:id/edit', (req, res) => {
     Care.findById(req.params.id, (error, care) => {
         res.render('./cares/edit.ejs', { care });
     });
+});
+
+// Route to Remove Tips
+router.put('/:careId/tips/remove', async(req, res) => {
+    let foundCare = await Care.findByIdAndUpdate(
+        req.params.careId, {
+            $pull: {
+                tips: req.body.tips,
+
+            },
+        }, { new: true, upsert: true }
+    );
+    console.log(foundCare);
+    res.redirect(`/cares/${foundCare.id}`);
 });
 
 // router.put("/:id", function(req, res) {

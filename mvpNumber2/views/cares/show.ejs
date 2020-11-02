@@ -1,6 +1,6 @@
 <h1>
-    <%= care.name %> Detail Page</h1>
-<a href="/<%=care.id%>/edit/">edit</a>
+    <%= care.name %>'s Self Care Tips Page</h1>
+<a href="/cares/<%= care._id %>/edit">edit</a>
 <br>
 <br>
 <form action="/cares/<%= care.id %>?_method=DELETE" method="POST">
@@ -35,3 +35,12 @@
                     <% }) %>
         </li>
 </ul>
+
+<form action="/cares/<%= care.id %>/tips/remove?_method=PUT" method="POST">
+    <% tips.forEach(tip => { %>
+
+        <input type="checkbox" name="tips" value="<%= tip.id %>" />
+        <label for="<%= tip.name %>"><%= tip.name%>: <%= tip.description %></label><br />
+        <% })%>
+            <input type="submit" value="Remove Tips" />
+</form>
