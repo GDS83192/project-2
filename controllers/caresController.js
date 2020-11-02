@@ -2,18 +2,24 @@ const router = require('express').Router();
 const Care = require('../models/care');
 const Tip = require('../models/tip');
 
-
+const isAuthenticated = (req, res, next) => {
+    if (req.session.currentUser) {
+        return next();
+    } else {
+        res.redirect('/sessions/new');
+    }
+};
 
 //1. INDEX ROUTE
 router.get('/', async(req, res) => {
     let allCares = await Care.find()
-    res.render('cares/index.ejs', { cares: allCares })
+    res.render('cares/index.ejs', { cares: allCares, currentUser: req.session.currentUser })
 })
 
 //2. NEW ROUTE
 router.get('/new', async(req, res) => {
     let allTips = await Tip.find({});
-    res.render('cares/new.ejs', { tips: allTips });
+    res.render('cares/new.ejs', { tips: allTips, currentUser: req.session.currentUser }, );
 });
 
 
@@ -48,7 +54,8 @@ router.get('/:id', async(req, res) => {
     res.render('cares/show.ejs', {
         care: foundCare,
         tips: allTips,
-    });
+        currentUser: req.session.currentUser
+    }, );
 });
 
 //4. CREATE ROUTE
@@ -94,7 +101,7 @@ router.delete('/:id', (req, res) => {
 // EDIT
 router.get('/:id/edit', (req, res) => {
     Care.findById(req.params.id, (error, care) => {
-        res.render('./cares/edit.ejs', { care });
+        res.render('./cares/edit.ejs', { care, currentUser: req.session.currentUser }, );
     });
 });
 
@@ -102,11 +109,11 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:careId/tips/remove', async(req, res) => {
     let foundCare = await Care.findByIdAndUpdate(
         req.params.careId, {
-            $pull: {
+            $pullAll: {
                 tips: req.body.tips,
 
             },
-        }, { new: true, upsert: true }
+        }, { multi: true, new: true, upsert: true }
     );
     console.log(foundCare);
     res.redirect(`/cares/${foundCare.id}`);
