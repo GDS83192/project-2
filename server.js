@@ -5,7 +5,7 @@ const methodOverride = require('method-override');
 const expressLayouts = require('express-ejs-layouts');
 const PORT = 3000;
 
-const mongoURI = 'mongodb://localhost:27017/mongoRelationships';
+const mongoURI = "mongodb+srv://m001-student:Mongo8319@sandbox.vv1cz.mongodb.net/test?authSource=admin&replicaSet=atlas-kmo5lm-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true";
 
 mongoose.connect(
     mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
