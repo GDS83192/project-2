@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const expressLayouts = require('express-ejs-layouts');
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const mongoURI = "mongodb+srv://m001-student:Mongo8319@sandbox.vv1cz.mongodb.net/test?authSource=admin&replicaSet=atlas-kmo5lm-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true";
 
