@@ -1,15 +1,18 @@
-Edit
-<%= care.name %>
-    <form action="/cares/<%= care._id %>/?_method=PUT" method="POST">
-        <label>Name</label>
-        <input type="text" name="name" id="name" value="New Username">
-        <!-- <label>Image</label> 
-    <input type="text" name="blog[image]" 
-            value="<%#= blog.image%>"> 
-    <label>Blog Content</label> 
-      
-    <textarea name="blog[body]"> 
-        <%#= blog.body%> 
-    </textarea>  -->
-        <input type="submit">
-    </form>
+<h1>Edit</h1>
+<h2>
+    <%= care.name %>
+</h2>
+<img src="<%= care.image %>">
+<br>
+<br>
+<br>
+<br>
+<br>
+<form action="/cares/<%= care._id %>/?_method=PUT" method="POST">
+    <label>Edit User Name</label>
+    <input type="text" name="name" id="name" value="New Username">
+    <label>Edit Profile Picture</label>
+    <input type="text" name="image" id="image" value="New Image URL">
+
+    <input type="submit">
+</form>

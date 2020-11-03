@@ -5,6 +5,9 @@ const careSchema = new mongoose.Schema({
         type: String,
         default: '',
     },
+    image: {
+        type: String,
+    },
     tips: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Tip',

@@ -82,6 +82,7 @@ router.put('/:id', async(req, res) => {
         req.params.id, {
             $set: {
                 name: req.body.name,
+                image: req.body.image,
             },
         }, { new: true, upsert: true }
     );

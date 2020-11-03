@@ -3,6 +3,7 @@
 <a href="/cares/<%= care._id %>/edit">edit</a>
 <br>
 <br>
+<img src="<%=care.image%>">
 <form action="/cares/<%= care.id %>?_method=DELETE" method="POST">
     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
 </form>
