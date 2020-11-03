@@ -11,13 +11,13 @@ const isAuthenticated = (req, res, next) => {
 };
 
 //1. INDEX ROUTE
-router.get('/', async(req, res) => {
+router.get('/', isAuthenticated, async(req, res) => {
     let allCares = await Care.find()
     res.render('cares/index.ejs', { cares: allCares, currentUser: req.session.currentUser })
 })
 
 //2. NEW ROUTE
-router.get('/new', async(req, res) => {
+router.get('/new', isAuthenticated, async(req, res) => {
     let allTips = await Tip.find({});
     res.render('cares/new.ejs', { tips: allTips, currentUser: req.session.currentUser }, );
 });
@@ -25,7 +25,7 @@ router.get('/new', async(req, res) => {
 
 
 // 5. UPDATE ROUTE to Add New Tips to a User after Creation
-router.put('/:careId/tips', async(req, res) => {
+router.put('/:careId/tips', isAuthenticated, async(req, res) => {
     let foundCare = await Care.findByIdAndUpdate(
         req.params.careId, {
             $push: {

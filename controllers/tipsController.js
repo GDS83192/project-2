@@ -1,8 +1,14 @@
 const router = require('express').Router();
 const Tip = require('../models/tip.js');
-
-// NEW TIP FORM
-router.get('/new', (req, res) => {
+const isAuthenticated = (req, res, next) => {
+        if (req.session.currentUser) {
+            return next()
+        } else {
+            res.redirect('/sessions/new')
+        }
+    }
+    // NEW TIP FORM
+router.get('/new', isAuthenticated, (req, res) => {
     res.render('tips/new.ejs', { currentUser: req.session.currentUser }, );
 });
 
