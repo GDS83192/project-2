@@ -24,7 +24,7 @@ router.get('/new', isAuthenticated, async(req, res) => {
 
 
 
-// 5. UPDATE ROUTE to Add New Tips to a User after Creation
+// 3. UPDATE ROUTE to Add New Tips to a Category after Creation
 router.put('/:careId/tips', isAuthenticated, async(req, res) => {
     let foundCare = await Care.findByIdAndUpdate(
         req.params.careId, {
@@ -39,8 +39,11 @@ router.put('/:careId/tips', isAuthenticated, async(req, res) => {
 });
 
 
-//3. SHOW ROUTE
-router.get('/:id', async(req, res) => {
+//4. SHOW ROUTE FOR CATEGORIES
+router.get('/:id', isAuthenticated, async(req, res) => {
+
+
+
     let allTips = await Tip.find({});
     let foundCare = await Care.findById(req.params.id).populate({
         path: 'tips',
@@ -54,11 +57,12 @@ router.get('/:id', async(req, res) => {
     res.render('cares/show.ejs', {
         care: foundCare,
         tips: allTips,
-        currentUser: req.session.currentUser
+        currentUser: req.session.currentUser,
+
     }, );
 });
 
-//4. CREATE ROUTE
+//5. CATEGORY CREATE ROUTE
 router.post('/', async(req, res) => {
     console.log(req.body);
     let care = await Care.create(req.body);
@@ -66,17 +70,7 @@ router.post('/', async(req, res) => {
 });
 
 
-
-
-
-
-
-
-
-
-//Update Route for User (vs Tips)
-
-// 5. UPDATE ROUTE
+// 6. CATEGORY UPDATE ROUTE 
 router.put('/:id', async(req, res) => {
     let foundCare = await Care.findByIdAndUpdate(
         req.params.id, {
@@ -90,7 +84,7 @@ router.put('/:id', async(req, res) => {
     res.redirect(`/cares/`);
 });
 
-// 6. DELETE ROUTE
+// 7. CATEGORY DELETE ROUTE
 router.delete('/:id', (req, res) => {
     Care.findByIdAndRemove(req.params.id, (error) => {
         res.redirect('/cares');
@@ -99,14 +93,14 @@ router.delete('/:id', (req, res) => {
 
 
 
-// EDIT
+// 8. CATEGORY EDIT ROUTE
 router.get('/:id/edit', (req, res) => {
     Care.findById(req.params.id, (error, care) => {
         res.render('./cares/edit.ejs', { care, currentUser: req.session.currentUser }, );
     });
 });
 
-// Route to Remove Tips
+// 9. UPDATE ROUTE TO REMOVE TIPS FROM CATEGORY
 router.put('/:careId/tips/remove', async(req, res) => {
     let foundCare = await Care.findByIdAndUpdate(
         req.params.careId, {
@@ -120,15 +114,5 @@ router.put('/:careId/tips/remove', async(req, res) => {
     res.redirect(`/cares/${foundCare.id}`);
 });
 
-// router.put("/:id", function(req, res) {
-//     Care.findByIdAndUpdate(req.params.id,
-//         req.params.name,
-//         function(err, updatedCare) {
-//             if (err) {
-//                 console.log("ERROR!");
-//             } else {
-//                 res.redirect("/cares/" + req.params.id);
-//             }
-//         });
-// });
+
 module.exports = router;

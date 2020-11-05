@@ -1,14 +1,14 @@
-<h1>Create a New User</h1>
+<h1>Create a New Category</h1>
 
 <form action="/cares" method="POST">
     <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" name="name" />
-        <label for="image">Profile Picture URL</label>
+        <label for="image">Category Picture</label>
         <input type="text" class="form-control" id="image" name="image">
     </div>
 
-    <h2>Select Tips for User</h2>
+    <h2>Select First Tips for New Category</h2>
     <% tips.forEach(tip => { %>
 
         <input type="checkbox" id="<%= tip.name %>" name="tips" value="<%= tip.id %>" />

@@ -1,47 +1,63 @@
-<h1>
-    <%= care.name %>'s Self Care Tips Page</h1>
-<a href="/cares/<%= care._id %>/edit">edit</a>
-<br>
-<br>
-<img src="<%=care.image%>">
-<form action="/cares/<%= care.id %>?_method=DELETE" method="POST">
-    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-</form>
+<div class="container">
+    <div class="row text-center text-lg-left">
+        <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">
+
+            <%= care.name %>'s Self Care Tips Page</h1>
+        </h1>
+        <a href="/cares/<%= care._id %>/edit">Edit Category</a>
+
+        <img class="img-fluid card-img-top" src="<%=care.image%>">
+        <form action="/cares/<%= care.id %>?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-danger btn-sm">Delete Category</button>
+        </form>
+    </div>
 
 
-<br>
-<br>
-<h4>Add Tips</h4>
-<br>
-<br>
 
-<form action="/cares/<%= care.id %>/tips?_method=PUT" method="POST">
-    <% tips.forEach(tip => { %>
 
-        <input type="checkbox" name="tips" value="<%= tip.id %>" />
-        <label for="<%= tip.name %>"><%= tip.name%>: <%= tip.description %></label><br />
-        <% })%>
-            <input type="submit" value="Add Tips" />
-</form>
-<br>
-<br>
 
-<h4>Tips</h4>
-<ul>
-    <% care.tips.forEach(tip => { %>
-        <li>
-            <%= tip.name %>:
-                <%= tip.description %>
+    <h4>Current Tips in this Category</h4>
+    <ul>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+            <% care.tips.forEach(tip => { %>
+                <li class="img-fluid img-thumbnail">
+                    <b><%= tip.name %>:</b>
+                    <%= tip.description %>
+                        <img class="tipImages" src="<%=tip.tipImg%>" />
+                        <% }) %>
+                </li>
+    </ul>
+    </div>
 
-                    <% }) %>
-        </li>
-</ul>
 
-<form action="/cares/<%= care.id %>/tips/remove?_method=PUT" method="POST">
-    <% tips.forEach(tip => { %>
 
-        <input type="checkbox" name="tips" value="<%= tip.id %>" />
-        <label for="<%= tip.name %>"><%= tip.name%>: <%= tip.description %></label><br />
-        <% })%>
-            <input type="submit" value="Remove Tips" />
-</form>
+
+    <div class="container">
+        <h4>Add Tips</h4>
+
+
+        <form action="/cares/<%= care.id %>/tips?_method=PUT" method="POST">
+            <% tips.forEach(tip => { %>
+
+                <input type="checkbox" name="tips" value="<%= tip.id %>" />
+                <label for="<%= tip.name %>"><%= tip.name%>: <%= tip.description %></label><br />
+                <% })%>
+                    <input type="submit" value="Add Tips" />
+        </form>
+    </div>
+
+    <div class="container">
+
+        <h4>Remove Tips</h4>
+
+        <form action="/cares/<%= care.id %>/tips/remove?_method=PUT" method="POST">
+            <% tips.forEach(tip => { %>
+
+                <input type="checkbox" name="tips" value="<%= tip.id %>" />
+                <label for="<%= tip.name %>"><%= tip.name%>: <%= tip.description %></label><br />
+                <% })%>
+                    <input type="submit" value="Remove Tips" />
+        </form>
+
+
+    </div>

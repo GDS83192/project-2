@@ -40,7 +40,7 @@ app.use('/tips', require('./controllers/tipsController'));
 app.use('/cares', require('./controllers/caresController'));
 
 app.get('/', (req, res) => {
-    res.render('home.ejs', { currentUser: req.session.currentUser });
+    res.render('sessions/new.ejs', { currentUser: req.session.currentUser });
 });
 
 app.get('/any', (req, res) => {
