@@ -42,8 +42,6 @@ router.put('/:careId/tips', isAuthenticated, async(req, res) => {
 //4. SHOW ROUTE FOR CATEGORIES
 router.get('/:id', isAuthenticated, async(req, res) => {
 
-
-
     let allTips = await Tip.find({});
     let foundCare = await Care.findById(req.params.id).populate({
         path: 'tips',
@@ -102,10 +100,16 @@ router.get('/:id/edit', (req, res) => {
 
 // 9. UPDATE ROUTE TO REMOVE TIPS FROM CATEGORY
 router.put('/:careId/tips/remove', async(req, res) => {
+    console.log(typeof(req.body.tips));
+    console.log("testString", req.body);
+    let removeTips = req.body.tips;
+    if (typeof(removeTips) == "string") {
+        removeTips = [req.body.tips];
+    }
     let foundCare = await Care.findByIdAndUpdate(
         req.params.careId, {
             $pullAll: {
-                tips: req.body.tips,
+                tips: removeTips,
 
             },
         }, { multi: true, new: true, upsert: true }
