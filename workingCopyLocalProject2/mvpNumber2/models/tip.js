@@ -10,6 +10,11 @@ const tipSchema = new mongoose.Schema({
         type: String,
         default: '',
     },
+
+    tipImg: {
+        type: String,
+        default: '',
+    }
 }, {
     timestamps: true,
     collation: { locale: 'en', strength: 2 }

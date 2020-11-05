@@ -10,3 +10,4 @@
 * Incorporate Google maps API so users can associate tips with particular locations
 * Add ability to like and comment on other users tips
 * Add file upload functionality using multer and GridFS
+* Add flash notification on successful tip add
