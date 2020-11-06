@@ -6,11 +6,10 @@
 <ul>
     <% cares.forEach(care => { %>
         <li>
-            <a href="/cares/<%= care.id %>">
-                <%= care.name %>
+            <a class="indexLinks" href="/cares/<%= care.id %>">
+                Go To <%= care.name %>
+            </a> <a class="indexLinks" href="/cares/<%= care._id %>/edit">edit <%=care.name%></a>
 
-                    <a href="/cares/<%= care._id %>/edit">edit</a>
-            </a>
         </li>
         <% }) %>
 </ul>

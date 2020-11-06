@@ -81,3 +81,33 @@ body>nav {
     padding: .5%;
     margin: auto;
 }
+
+#categHeading {
+    height: 200px;
+    width: 50%
+}
+
+#editLink {
+    font-size: 2rem
+}
+
+.editPageLabel {
+    font-size: 2rem;
+}
+
+#editPageImg {
+    height: 200px;
+    width: 200px;
+}
+
+.indexLinks {
+    font-size: 2rem;
+}
+
+#signUpLink {
+    font-size: 2rem;
+}
+
+#navBrand {
+    font-size: 2rem;
+}

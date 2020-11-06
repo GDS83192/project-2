@@ -4,11 +4,13 @@
 
             <%= care.name %>'s Self Care Tips Page</h1>
         </h1>
-        <a href="/cares/<%= care._id %>/edit">Edit Category</a>
 
-        <img class="img-fluid card-img-top" src="<%=care.image%>">
+
+        <img id="categHeading" class=" img-fluid card-img-top " src="<%=care.image%>">
         <form action="/cares/<%= care.id %>?_method=DELETE" method="POST">
             <button type="submit" class="btn btn-danger btn-sm">Delete Category</button>
+            <br>
+            <a id="editLink" href="/cares/<%= care._id %>/edit">Edit Category</a>
         </form>
     </div>
 
