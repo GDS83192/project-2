@@ -2,6 +2,16 @@ body {
     background-color: lightblue;
 }
 
+nav ul li a:hover {
+    background: gray;
+    color: teal;
+}
+
+body>nav {
+    font-size: 2rem;
+    display: flex;
+}
+
 .tipImages {
     border: 1px solid #ddd;
     /* Gray border */
@@ -14,15 +24,10 @@ body {
 }
 
 
-/* Add a hover effect (blue shadow) */
+/* Blue Hover Effect */
 
 .tipImages:hover {
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-}
-
-nav ul li a:hover {
-    background: gray;
-    color: teal;
 }
 
 .major-heading {
@@ -36,9 +41,12 @@ nav ul li a:hover {
     padding: .5%;
 }
 
-body>nav {
+.editPageLabel {
     font-size: 2rem;
-    display: flex;
+}
+
+.indexLinks {
+    font-size: 2rem;
 }
 
 #navbarSupportedContent>ul>li:nth-child(4)>a {
@@ -91,17 +99,9 @@ body>nav {
     font-size: 2rem
 }
 
-.editPageLabel {
-    font-size: 2rem;
-}
-
 #editPageImg {
     height: 200px;
     width: 200px;
-}
-
-.indexLinks {
-    font-size: 2rem;
 }
 
 #signUpLink {
