@@ -1,0 +1,26 @@
+Useful Resources
+
+
+Issue with not including logged in user in homepage get “/“ —https://stackoverflow.com/questions/35117454/embedded-js-partials-determining-whether-a-user-is-logged-in
+
+2) Using pullAll vs Pull —https://docs.mongodb.com/manual/reference/operator/update/pull/
+
+3) Send (“tip created”) before redirect — https://github.com/expressjs/express/issues/3635
+
+***Need to look up adding flash message on successful tip insert and user creation
+4) Pagination — https://softwareontheroad.com/pagination-in-nodejs-mongo/
+
+5) Express Input Validator — https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/forms
+	
+
+6) upload files to mongo using multer and gridfs
+
+7) GeoLocation — https://rapidapi.com/blog/geolocation-backend-node-express/
+
+8) GeoCoding — https://medium.com/javascript-in-plain-english/an-introduction-to-geocoding-using-node-js-fe1a5d3aa05c
+
+9) Pagination — https://kb.objectrocket.com/mongo-db/mongoose-pagination-with-nodejs-and-mongodb-1304
+
+10) Pagination — https://stackoverflow.com/questions/5539955/how-to-paginate-with-mongoose-in-node-js
+
+11) Pagination https://www.npmjs.com/package/mongodb-ejs-pagination
