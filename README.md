@@ -64,10 +64,7 @@ This application was designed to help users find good strategies for staying pos
 10. As a registered user I want to be able to update my posts so that I can improve on them with new information/ideas or images.
 
 11. As a registered user I want to be able to delete my posts so that if I determine I want to take down an idea, this will be a straightforward process.
-
-
-
-The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.  
+ 
 
 ## Technologies Used
 
@@ -83,7 +80,7 @@ The functionality will then be divided into two separate lists: MPV and PostMVP.
 
 2. Creating initial 7 routes -- 0.5 days
 
-3. Testing initial 7 routes -- 0.5days
+3. Testing initial 7 routes -- 0.5 days
 
 4. Creating views after routes are confirmed working -- 1 day
 
